@@ -1,0 +1,26 @@
+
+
+.App {
+  text-align: center;
+  margin: 20px;
+}
+
+.selector {
+  margin: 20px;
+}
+
+label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+select {
+  font-size: 16px;
+  margin-right: 20px;
+  padding: 5px;
+}
+
+canvas {
+  max-width: 1000px;
+  margin: 0 auto;
+}
