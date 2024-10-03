@@ -3,7 +3,6 @@ import { Chart, registerables } from 'chart.js';
 import { CandlestickController, CandlestickElement } from 'chartjs-chart-financial';
 import 'chartjs-adapter-date-fns';
 
-// Register all Chart.js components and the candlestick chart type
 Chart.register(...registerables, CandlestickController, CandlestickElement);
 
 const ChartComponent = ({ data, coin, interval }) => {
@@ -35,7 +34,7 @@ const ChartComponent = ({ data, coin, interval }) => {
 
     // Create the chart
     chartInstanceRef.current = new Chart(chartRef.current, {
-      type: 'candlestick',  // Using the candlestick chart type
+      type: 'candlestick',  
       data: chartData,
       options: {
         responsive: true,

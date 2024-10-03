@@ -21,7 +21,7 @@ function App() {
   const [candlestickData, setCandlestickData] = useState({});
   const ws = useRef(null);
 
-  // Fetch data from localStorage if exists
+  // Fetch data from localStorage 
   useEffect(() => {
     const storedData = localStorage.getItem(`${selectedCoin}-${selectedInterval}`);
     if (storedData) {
@@ -29,7 +29,6 @@ function App() {
     }
   }, [selectedCoin, selectedInterval]);
 
-  // Establish WebSocket connection and update chart
   useEffect(() => {
     const wsUrl = `wss://stream.binance.com:9443/ws/${selectedCoin}@kline_${selectedInterval}`;
     ws.current = new WebSocket(wsUrl);
@@ -37,7 +36,7 @@ function App() {
     ws.current.onmessage = (event) => {
       const message = JSON.parse(event.data);
 
-      // Extract candlestick data
+      // Extract data
       const { t: time, o: open, h: high, l: low, c: close } = message.k;
       const newCandle = { time, open, high, low, close };
 
@@ -48,7 +47,7 @@ function App() {
         }
         updatedData[selectedCoin].push(newCandle);
 
-        // Store data in localStorage for persistence
+        // Store data in localStorage 
         localStorage.setItem(`${selectedCoin}-${selectedInterval}`, JSON.stringify(updatedData));
         return updatedData;
       });
@@ -72,7 +71,7 @@ function App() {
       <div className="container mt-4">
         <h1>Binance Market Data</h1>
 
-        {/* Cryptocurrency and Interval Selectors */}
+      
         <div className="row my-4">
           <div className="col-md-6">
             <label htmlFor="coin" className="form-label">Select Coin: </label>
@@ -106,7 +105,7 @@ function App() {
           </div>
         </div>
 
-        {/* Chart Component */}
+      
         <ChartComponent
           data={candlestickData[selectedCoin] || []}
           coin={selectedCoin}
